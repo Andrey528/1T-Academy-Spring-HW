@@ -16,7 +16,7 @@ public class UserDao {
         this.dataSource = dataSource;
     }
 
-    public void create(User user) {
+    public void save(User user) {
         String sql = "INSERT INTO users (username) VALUES (?)";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

@@ -16,7 +16,7 @@ public class UserApp {
 
         UserService userService = context.getBean(UserService.class);
 
-        User newUser = userService.createUser("testuser");
+        User newUser = userService.saveUser("testuser");
         System.out.println("Создан пользователь: " + newUser);
 
         List<User> users = userService.getAllUsers();

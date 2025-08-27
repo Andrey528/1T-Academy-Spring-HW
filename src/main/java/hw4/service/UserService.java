@@ -15,10 +15,10 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public User createUser(String username) {
+    public User saveUser(String username) {
         User user = new User();
         user.setUsername(username);
-        userDao.create(user);
+        userDao.save(user);
         return user;
     }
 
