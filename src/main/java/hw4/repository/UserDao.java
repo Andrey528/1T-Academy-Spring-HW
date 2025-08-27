@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserDao {
@@ -32,20 +33,21 @@ public class UserDao {
         }
     }
 
-    public User getById(Long id) {
+    public Optional<User> getById(Long id) {
         String sql = "SELECT id, username FROM users WHERE id = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return new User(rs.getLong("id"), rs.getString("username"));
+                    User user = new User(rs.getLong("id"), rs.getString("username"));
+                    return Optional.of(user);
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return Optional.empty();
     }
 
     public List<User> getAll() {

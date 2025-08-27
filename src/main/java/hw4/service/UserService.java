@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userDao.getById(id);
+        return userDao.getById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public List<User> getAllUsers() {
