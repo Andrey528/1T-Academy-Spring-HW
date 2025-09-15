@@ -13,15 +13,21 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <postgre.driver.version>42.7.7</postgre.driver.version>
-        <spring.boot.jpa.version>3.5.4</spring.boot.jpa.version>
+        <spring.version>3.5.4</spring.version>
         <flyway.version>9.16.0</flyway.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring.boot.jpa.version}</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>

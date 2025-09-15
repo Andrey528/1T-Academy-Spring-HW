@@ -1,4 +1,4 @@
-package hw5;
+package hw6;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

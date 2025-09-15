@@ -1,6 +1,6 @@
-package hw5.repository;
+package hw6.repository;
 
-import hw5.model.User;
+import hw6.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
