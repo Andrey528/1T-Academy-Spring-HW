@@ -3,6 +3,7 @@ package hw6.controller;
 import hw6.dto.UserDto;
 import hw6.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<UserDto>> getUsers(
             @RequestParam(name = "includeProducts") boolean includeProducts
     ) {
@@ -58,8 +59,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable(name = "id") Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable(name = "id") Long id) {
         userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
     }
 }

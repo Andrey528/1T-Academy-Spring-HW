@@ -16,16 +16,18 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserMapper userMapper;
+
     @Transactional
     public UserDto saveUser(String username) {
         User user = userRepository.save(new User(username));
-        return UserMapper.toDTO(user, false);
+        return userMapper.toDTO(user, false);
     }
 
     @Transactional
     public UserDto getUser(Long id, boolean includeProducts) {
         User user = getUser(id);
-        return UserMapper.toDTO(user, includeProducts);
+        return userMapper.toDTO(user, includeProducts);
     }
 
     public User getUser(Long id) {
@@ -35,7 +37,7 @@ public class UserService {
     @Transactional
     public List<UserDto> getAllUsers(boolean includeProducts) {
         List<User> users = userRepository.findAll();
-        return UserMapper.toDTO(users, includeProducts);
+        return userMapper.toDTO(users, includeProducts);
     }
 
     @Transactional

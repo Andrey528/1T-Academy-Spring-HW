@@ -2,19 +2,21 @@ package hw6.util;
 
 import hw6.dto.ProductDto;
 import hw6.model.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 
+@Component
 public class ProductMapper {
-    public static List<ProductDto> toDTO(List<Product> products) {
+    public List<ProductDto> toDTO(List<Product> products) {
 
         if (products == null || products.isEmpty()) return Collections.emptyList();
 
-        return products.stream().map(ProductMapper::toDTO).toList();
+        return products.stream().map(this::toDTO).toList();
     }
 
-    public static ProductDto toDTO(Product product) {
+    public ProductDto toDTO(Product product) {
         if (product == null) return null;
 
         return new ProductDto(
@@ -25,7 +27,7 @@ public class ProductMapper {
         );
     }
 
-    public static Product toEntity(ProductDto productDto) {
+    public Product toEntity(ProductDto productDto) {
         return new Product(
                 productDto.getAccNumber(),
                 productDto.getBalance()

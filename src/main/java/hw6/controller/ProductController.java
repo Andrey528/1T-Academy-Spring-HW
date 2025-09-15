@@ -1,9 +1,9 @@
 package hw6.controller;
 
 import hw6.dto.ProductDto;
-import hw6.model.Product;
 import hw6.service.ProductService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +21,9 @@ public class ProductController {
         return productService.getProductsByUserId(userId);
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping("/create")
     public ProductDto createProduct(
-            @PathVariable(name = "userId") Long userId,
+            @RequestParam(name = "userId") Long userId,
             @RequestBody ProductDto product
     ) {
         return productService.createProduct(userId, product);
@@ -41,8 +41,8 @@ public class ProductController {
     }
 
     @DeleteMapping("/{productId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable(name = "productId") Long productId) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(name = "productId") Long productId) {
         productService.deleteProduct(productId);
-        return ResponseEntity.noContent().build();
     }
 }

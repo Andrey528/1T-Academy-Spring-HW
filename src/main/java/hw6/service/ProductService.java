@@ -24,10 +24,12 @@ public class ProductService {
 
     private final UserService userService;
 
+    private final ProductMapper productMapper;
+
     public List<ProductDto> getProductsByUserId(Long userId) {
         List<Product> products = productRepository.findByUserId(userId);
 
-        return ProductMapper.toDTO(products);
+        return productMapper.toDTO(products);
     }
 
     @Transactional
@@ -41,14 +43,14 @@ public class ProductService {
         ProductDictionary type = productDictionaryRepository.findById(product.getType())
                 .orElseThrow(() -> new EntityNotFoundException("Product type not found"));
 
-        Product newProduct = ProductMapper.toEntity(product);
+        Product newProduct = productMapper.toEntity(product);
 
         newProduct.setUser(user);
         newProduct.setType(type);
 
         newProduct = productRepository.save(newProduct);
 
-        return ProductMapper.toDTO(newProduct);
+        return productMapper.toDTO(newProduct);
     }
 
     @Transactional
@@ -72,7 +74,7 @@ public class ProductService {
                 })
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        return ProductMapper.toDTO(newProduct);
+        return productMapper.toDTO(newProduct);
     }
 
     @Transactional

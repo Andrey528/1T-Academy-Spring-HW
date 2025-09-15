@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
 
 @Getter
 @Setter
@@ -17,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity
 @Table(name = "product_dictionary")
-public class ProductDictionary implements Serializable {
+public class ProductDictionary {
     @Id
     @Column(name = "code")
     private String code;
